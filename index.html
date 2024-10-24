@@ -7188,7 +7188,15 @@
         // console.log(CHOSEN_CARDS_SORTED);
 
         function correctData(cards) {
-          //TODO
+          for(let card in cards) {
+                console.log(cards[card])
+                for(let property in cards[card]) {
+                  if(!cards[card][property]){
+                    cards[card][property] = 0;
+                    console.log(cards[card]);
+                  } 
+                }
+            }
         }
 
         function chooseCardsFromCollection(howManyCards, collectionSize) {
