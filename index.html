@@ -7624,7 +7624,17 @@
             //choose land
 
             
-            chosenCards = chosenCards.sort((a, b) => rarityOrder[a["Rarity"]] - rarityOrder[b["Rarity"]]);
+            chosenCards = chosenCards.sort((a, b) => {
+                // First, compare by rarity
+                const rarityComparison = rarityOrder[a["Rarity"]] - rarityOrder[b["Rarity"]];
+                
+                // If rarities are the same, compare by cardIndex
+                if (rarityComparison === 0) {
+                    return a["cardIndex"] - b["cardIndex"];
+                }
+                
+                return rarityComparison;  // Otherwise, return the result of rarity comparison
+            });
             return chosenCards;
         }
 
