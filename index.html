@@ -101,9 +101,220 @@
     <!-- <div id="cardsSpecs"></div> TODO: add a panel with cards info -->
     <button id="resetBtn">Reset</button>
     <script>
-
         // Game constants
         const CARDS_NUMBER = 14;
+        const CARDS_SPECIAL_GUESTS = [
+        {
+          "Name": "Hallowed Haunting",
+          "Color": "W",
+          "Rarity": "M",
+          "# Seen": 1545,
+          "ALSA": 2.32,
+          "# Picked": 510,
+          "ATA": 2.37,
+          "# GP": 2093,
+          "% GP": "71.8%",
+          "GP WR": "51.3%",
+          "# OH": 374,
+          "OH WR": "",
+          "# GD": 531,
+          "GD WR": "53.7%",
+          "# GIH": 905,
+          "GIH WR": "51.6%",
+          "# GNS": 1190,
+          "GNS WR": "51.2%",
+          "IWD": "0.4pp"
+        },
+        {
+          "Name": "Soul Warden",
+          "Color": "W",
+          "Rarity": "M",
+          "# Seen": 2710,
+          "ALSA": 3.53,
+          "# Picked": 349,
+          "ATA": "",
+          "# GP": 948,
+          "% GP": "48.5%",
+          "GP WR": "51.3%",
+          "# OH": 176,
+          "OH WR": "",
+          "# GD": 214,
+          "GD WR": "",
+          "# GIH": 390,
+          "GIH WR": "",
+          "# GNS": 556,
+          "GNS WR": "50.2%",
+          "IWD": ""
+        },
+        {
+          "Name": "Expropriate",
+          "Color": "U",
+          "Rarity": "M",
+          "# Seen": 3729,
+          "ALSA": 4.77,
+          "# Picked": 525,
+          "ATA": 7,
+          "# GP": 727,
+          "% GP": "23.6%",
+          "GP WR": "51.9%",
+          "# OH": 118,
+          "OH WR": "",
+          "# GD": 182,
+          "GD WR": "",
+          "# GIH": 300,
+          "GIH WR": "",
+          "# GNS": 426,
+          "GNS WR": "",
+          "IWD": ""
+        },
+        {
+          "Name": "Phantasmal Image",
+          "Color": "U",
+          "Rarity": "M",
+          "# Seen": 1750,
+          "ALSA": 2.35,
+          "# Picked": 685,
+          "ATA": 2.61,
+          "# GP": 3447,
+          "% GP": "86.7%",
+          "GP WR": "54.5%",
+          "# OH": 591,
+          "OH WR": "51.8%",
+          "# GD": 919,
+          "GD WR": "60.6%",
+          "# GIH": 1510,
+          "GIH WR": "57.2%",
+          "# GNS": 1933,
+          "GNS WR": "52.4%",
+          "IWD": "4.7pp"
+        },
+        {
+          "Name": "Damnation",
+          "Color": "B",
+          "Rarity": "M",
+          "# Seen": 1313,
+          "ALSA": 1.81,
+          "# Picked": 623,
+          "ATA": 1.87,
+          "# GP": 3105,
+          "% GP": "83.5%",
+          "GP WR": "54.4%",
+          "# OH": 539,
+          "OH WR": "56.2%",
+          "# GD": 780,
+          "GD WR": "60.9%",
+          "# GIH": 1319,
+          "GIH WR": "59.0%",
+          "# GNS": 1768,
+          "GNS WR": "51.0%",
+          "IWD": "8.0pp"
+        },
+        {
+          "Name": "Sacrifice",
+          "Color": "B",
+          "Rarity": "M",
+          "# Seen": 3960,
+          "ALSA": 5.06,
+          "# Picked": 410,
+          "ATA": "",
+          "# GP": 174,
+          "% GP": "7.3%",
+          "GP WR": "",
+          "# OH": 35,
+          "OH WR": "",
+          "# GD": 39,
+          "GD WR": "",
+          "# GIH": 74,
+          "GIH WR": "",
+          "# GNS": 100,
+          "GNS WR": "",
+          "IWD": ""
+        },
+        {
+          "Name": "Maddening Hex",
+          "Color": "R",
+          "Rarity": "M",
+          "# Seen": 2810,
+          "ALSA": 3.71,
+          "# Picked": 535,
+          "ATA": 4.55,
+          "# GP": 1684,
+          "% GP": "53.5%",
+          "GP WR": "48.4%",
+          "# OH": 264,
+          "OH WR": "",
+          "# GD": 364,
+          "GD WR": "",
+          "# GIH": 628,
+          "GIH WR": "46.7%",
+          "# GNS": 1056,
+          "GNS WR": "49.4%",
+          "IWD": "-2.8pp"
+        },
+        {
+          "Name": "Unholy Heat",
+          "Color": "R",
+          "Rarity": "M",
+          "# Seen": 1882,
+          "ALSA": 2.4,
+          "# Picked": 708,
+          "ATA": 2.68,
+          "# GP": 3736,
+          "% GP": "88.9%",
+          "GP WR": "54.5%",
+          "# OH": 629,
+          "OH WR": "56.6%",
+          "# GD": 850,
+          "GD WR": "58.1%",
+          "# GIH": 1479,
+          "GIH WR": "57.5%",
+          "# GNS": 2252,
+          "GNS WR": "52.6%",
+          "IWD": "4.9pp"
+        },
+        {
+          "Name": "Collected Company",
+          "Color": "G",
+          "Rarity": "M",
+          "# Seen": 2012,
+          "ALSA": 2.65,
+          "# Picked": 495,
+          "ATA": "",
+          "# GP": 1671,
+          "% GP": "58.3%",
+          "GP WR": "52.0%",
+          "# OH": 301,
+          "OH WR": "",
+          "# GD": 396,
+          "GD WR": "",
+          "# GIH": 697,
+          "GIH WR": "53.2%",
+          "# GNS": 975,
+          "GNS WR": "51.2%",
+          "IWD": "2.0pp"
+        },
+        {
+          "Name": "Noxious Revival",
+          "Color": "G",
+          "Rarity": "M",
+          "# Seen": 3221,
+          "ALSA": 4.09,
+          "# Picked": 393,
+          "ATA": "",
+          "# GP": 777,
+          "% GP": "35.2%",
+          "GP WR": "47.1%",
+          "# OH": 103,
+          "OH WR": "",
+          "# GD": 202,
+          "GD WR": "",
+          "# GIH": 305,
+          "GIH WR": "",
+          "# GNS": 471,
+          "GNS WR": "",
+          "IWD": ""
+        }
+      ]
         const CARDS = [
   {
     "Name": "Overlord of the Mistmoors",
@@ -904,27 +1115,6 @@
     "IWD": "3.9pp"
   },
   {
-    "Name": "Damnation",
-    "Color": "B",
-    "Rarity": "M",
-    "# Seen": 1313,
-    "ALSA": 1.81,
-    "# Picked": 623,
-    "ATA": 1.87,
-    "# GP": 3105,
-    "% GP": "83.5%",
-    "GP WR": "54.4%",
-    "# OH": 539,
-    "OH WR": "56.2%",
-    "# GD": 780,
-    "GD WR": "60.9%",
-    "# GIH": 1319,
-    "GIH WR": "59.0%",
-    "# GNS": 1768,
-    "GNS WR": "51.0%",
-    "IWD": "8.0pp"
-  },
-  {
     "Name": "Floodpits Drowner",
     "Color": "U",
     "Rarity": "U",
@@ -1450,27 +1640,6 @@
     "IWD": "2.6pp"
   },
   {
-    "Name": "Unholy Heat",
-    "Color": "R",
-    "Rarity": "M",
-    "# Seen": 1882,
-    "ALSA": 2.4,
-    "# Picked": 708,
-    "ATA": 2.68,
-    "# GP": 3736,
-    "% GP": "88.9%",
-    "GP WR": "54.5%",
-    "# OH": 629,
-    "OH WR": "56.6%",
-    "# GD": 850,
-    "GD WR": "58.1%",
-    "# GIH": 1479,
-    "GIH WR": "57.5%",
-    "# GNS": 2252,
-    "GNS WR": "52.6%",
-    "IWD": "4.9pp"
-  },
-  {
     "Name": "Undead Sprinter",
     "Color": "BR",
     "Rarity": "R",
@@ -1637,27 +1806,6 @@
     "# GNS": 54599,
     "GNS WR": "54.5%",
     "IWD": "2.7pp"
-  },
-  {
-    "Name": "Phantasmal Image",
-    "Color": "U",
-    "Rarity": "M",
-    "# Seen": 1750,
-    "ALSA": 2.35,
-    "# Picked": 685,
-    "ATA": 2.61,
-    "# GP": 3447,
-    "% GP": "86.7%",
-    "GP WR": "54.5%",
-    "# OH": 591,
-    "OH WR": "51.8%",
-    "# GD": 919,
-    "GD WR": "60.6%",
-    "# GIH": 1510,
-    "GIH WR": "57.2%",
-    "# GNS": 1933,
-    "GNS WR": "52.4%",
-    "IWD": "4.7pp"
   },
   {
     "Name": "Fear of Being Hunted",
@@ -4222,27 +4370,6 @@
     "IWD": "4.7pp"
   },
   {
-    "Name": "Collected Company",
-    "Color": "G",
-    "Rarity": "M",
-    "# Seen": 2012,
-    "ALSA": 2.65,
-    "# Picked": 495,
-    "ATA": "",
-    "# GP": 1671,
-    "% GP": "58.3%",
-    "GP WR": "52.0%",
-    "# OH": 301,
-    "OH WR": "",
-    "# GD": 396,
-    "GD WR": "",
-    "# GIH": 697,
-    "GIH WR": "53.2%",
-    "# GNS": 975,
-    "GNS WR": "51.2%",
-    "IWD": "2.0pp"
-  },
-  {
     "Name": "Intruding Soulrager",
     "Color": "UR",
     "Rarity": "U",
@@ -4871,27 +4998,6 @@
     "# GNS": 54782,
     "GNS WR": "52.5%",
     "IWD": "-0.7pp"
-  },
-  {
-    "Name": "Hallowed Haunting",
-    "Color": "W",
-    "Rarity": "M",
-    "# Seen": 1545,
-    "ALSA": 2.32,
-    "# Picked": 510,
-    "ATA": 2.37,
-    "# GP": 2093,
-    "% GP": "71.8%",
-    "GP WR": "51.3%",
-    "# OH": 374,
-    "OH WR": "",
-    "# GD": 531,
-    "GD WR": "53.7%",
-    "# GIH": 905,
-    "GIH WR": "51.6%",
-    "# GNS": 1190,
-    "GNS WR": "51.2%",
-    "IWD": "0.4pp"
   },
   {
     "Name": "Resurrected Cultist",
@@ -5692,27 +5798,6 @@
     "IWD": "-3.7pp"
   },
   {
-    "Name": "Maddening Hex",
-    "Color": "R",
-    "Rarity": "M",
-    "# Seen": 2810,
-    "ALSA": 3.71,
-    "# Picked": 535,
-    "ATA": 4.55,
-    "# GP": 1684,
-    "% GP": "53.5%",
-    "GP WR": "48.4%",
-    "# OH": 264,
-    "OH WR": "",
-    "# GD": 364,
-    "GD WR": "",
-    "# GIH": 628,
-    "GIH WR": "46.7%",
-    "# GNS": 1056,
-    "GNS WR": "49.4%",
-    "IWD": "-2.8pp"
-  },
-  {
     "Name": "Cackling Slasher",
     "Color": "B",
     "Rarity": "C",
@@ -5919,90 +6004,6 @@
     "# GIH": 6,
     "GIH WR": "",
     "# GNS": 20,
-    "GNS WR": "",
-    "IWD": ""
-  },
-  {
-    "Name": "Soul Warden",
-    "Color": "W",
-    "Rarity": "M",
-    "# Seen": 2710,
-    "ALSA": 3.53,
-    "# Picked": 349,
-    "ATA": "",
-    "# GP": 948,
-    "% GP": "48.5%",
-    "GP WR": "51.3%",
-    "# OH": 176,
-    "OH WR": "",
-    "# GD": 214,
-    "GD WR": "",
-    "# GIH": 390,
-    "GIH WR": "",
-    "# GNS": 556,
-    "GNS WR": "50.2%",
-    "IWD": ""
-  },
-  {
-    "Name": "Expropriate",
-    "Color": "U",
-    "Rarity": "M",
-    "# Seen": 3729,
-    "ALSA": 4.77,
-    "# Picked": 525,
-    "ATA": 7,
-    "# GP": 727,
-    "% GP": "23.6%",
-    "GP WR": "51.9%",
-    "# OH": 118,
-    "OH WR": "",
-    "# GD": 182,
-    "GD WR": "",
-    "# GIH": 300,
-    "GIH WR": "",
-    "# GNS": 426,
-    "GNS WR": "",
-    "IWD": ""
-  },
-  {
-    "Name": "Sacrifice",
-    "Color": "B",
-    "Rarity": "M",
-    "# Seen": 3960,
-    "ALSA": 5.06,
-    "# Picked": 410,
-    "ATA": "",
-    "# GP": 174,
-    "% GP": "7.3%",
-    "GP WR": "",
-    "# OH": 35,
-    "OH WR": "",
-    "# GD": 39,
-    "GD WR": "",
-    "# GIH": 74,
-    "GIH WR": "",
-    "# GNS": 100,
-    "GNS WR": "",
-    "IWD": ""
-  },
-  {
-    "Name": "Noxious Revival",
-    "Color": "G",
-    "Rarity": "M",
-    "# Seen": 3221,
-    "ALSA": 4.09,
-    "# Picked": 393,
-    "ATA": "",
-    "# GP": 777,
-    "% GP": "35.2%",
-    "GP WR": "47.1%",
-    "# OH": 103,
-    "OH WR": "",
-    "# GD": 202,
-    "GD WR": "",
-    "# GIH": 305,
-    "GIH WR": "",
-    "# GNS": 471,
     "GNS WR": "",
     "IWD": ""
   }
@@ -7193,8 +7194,39 @@
     "URL": "https://cards.scryfall.io/large/front/7/b/7b8c04ad-9c81-48f6-85cc-ae30a80a7989.jpg?1727336590"
   }
 ];
-        const CHOSEN_CARDS = chooseCardsFromCollection(CARDS_NUMBER, CARDS.length);
-        const CHOSEN_CARDS_SORTED = [...CHOSEN_CARDS].sort((a,b) => (parseFloat((b.cardInfo["GIH WR"]) || 0) - (parseFloat(a.cardInfo["GIH WR"]) || 0)));
+        
+        const MYTHIC_CARDS = CARDS.filter(item => item.Rarity === "M");
+        const RARE_CARDS = CARDS.filter(item => item.Rarity === "R");
+        const UNCOMMON_CARDS = CARDS.filter(item => item.Rarity === "U");
+        const COMMON_CARDS = CARDS.filter(item => item.Rarity === "C");
+
+        // Rarity Constants
+        const WILDCARD_RARITY = {
+          "M": {
+            "array": MYTHIC_CARDS,
+            "probability": 0.0173
+          },
+          "R": {
+            "array": RARE_CARDS,
+            "probability": 0.1216
+          },
+          "U": {
+            "array": UNCOMMON_CARDS,
+            "probability": 0.4816
+          },
+          "C": {
+            "array": COMMON_CARDS,
+            "probability": 1
+          }
+        };
+        const SPECIAL_RARITY = 0.015625;
+        const MYTHIC_RARITY = 0.143;
+        const DUAL_LANDS_RARITY = 0.5;
+
+        const CHOSEN_CARDS = chooseInitialCards();
+        const CHOSEN_CARDS_SORTED = [...CHOSEN_CARDS].sort((a,b) => (parseFloat((b["GIH WR"]) || 0) - (parseFloat(a["GIH WR"]) || 0)));
+
+
         
         // Game variables
         let gameDone = false;
@@ -7223,18 +7255,81 @@
             }
         }
 
-        function chooseCardsFromCollection(howManyCards, collectionSize) {
+        function getRandomItem(items) {
+          // Pick a random item from the filtered array
+          if (items.length > 0) {
+            const randomIndex = Math.floor(Math.random() * items.length);
+            let returnItem = items[randomIndex];
+            items.splice(randomIndex, 1); // Remove 1 element at cardIndex
+            return items[randomIndex];
+          } else {
+            return null; // No item with the specified rarity found
+          }
+        }
+
+
+        function chooseWildcard(isSplice, chosenCards) {
+          let randomValue = Math.random(); 
+
+          // Loop through each rarity type in WILDCARD_RARITY
+          for (let rarityType in WILDCARD_RARITY) {
+              let rarityProbability = WILDCARD_RARITY[rarityType]["probability"];
+
+              // If the random value is less than the current rarity's probability
+              if (randomValue < rarityProbability) {
+                  let cardArray = WILDCARD_RARITY[rarityType]["array"];
+
+                  let selectedCard = getRandomItem(cardArray);
+
+                  // Add the selected card to the chosenCards array
+                  chosenCards.push(selectedCard);
+
+                  if(!isSplice){
+                    cardArray.push(selectedCard);  
+                  }
+
+                  break;
+              }
+          }
+        }
+
+        function chooseInitialCards() {
             let chosenCards = [];
 
-            do {
-                let cardIndex = Math.floor(Math.random() * collectionSize);
-                if (!chosenCards.includes(cardIndex)) {
-                    chosenCards.push({
-                        cardIndex,
-                        cardInfo: CARDS[cardIndex]
-                    });
-                }
-            } while (chosenCards.length < howManyCards)
+            //Choose Wildcards
+            // Generate a random value between 0 and 1 to determine rarity
+
+            chooseWildcard(false, chosenCards);
+            chooseWildcard(true, chosenCards);
+
+            //choose rare/mythic
+            if(Math.random() < MYTHIC_RARITY){
+              chosenCards.push(getRandomItem(WILDCARD_RARITY["M"]["array"]));
+            } else {
+              chosenCards.push(getRandomItem(WILDCARD_RARITY["R"]["array"]));
+            }
+
+            
+
+            //choose 3 uncommons
+            for (let i = 0; i < 3; i++) {
+              chosenCards.push(getRandomItem(WILDCARD_RARITY["U"]["array"]));
+            }
+
+            //choose special guest or common
+            if(Math.random() < SPECIAL_RARITY){
+              chosenCards.push(getRandomItem(CARDS_SPECIAL_GUESTS));
+            } else {
+              chosenCards.push(getRandomItem(WILDCARD_RARITY["C"]["array"]));
+            }
+
+            //choose 6 commons
+            for (let i = 0; i < 6; i++) {
+                chosenCards.push(getRandomItem(WILDCARD_RARITY["C"]["array"]));
+            }
+            
+            //choose land
+
 
             return chosenCards;
         }
@@ -7247,23 +7342,23 @@
                 // Create card HTML element
                 let cardElement = document.createElement("div");
                 cardElement.classList.add("card");
-                cardElement.id = chosenCards[i].cardIndex;
+                cardElement.id = CARDS.findIndex(x => x.Name = chosenCards[i].Name);
 
                 // Create card's image
                 let cardImageElement = document.createElement("img");
                 cardImageElement.classList.add("card-image");
-                cardImageElement.src = getCardImage(chosenCards[i].cardInfo.Name);
+                cardImageElement.src = getCardImage(chosenCards[i].Name);
                 cardElement.appendChild(cardImageElement);
 
                 // Rotate card if it is a double card
-                if (chosenCards[i].cardInfo.Name.includes("//")) {
+                if (chosenCards[i].Name.includes("//")) {
                     cardElement.classList.add("rotate90");
                 }
 
                 // Add card details that will be revealed
                 let cardDetailsElement = document.createElement("div");
                 cardDetailsElement.classList.add("cardDetails");
-                cardDetailsElement.innerText = "ALSA: " + chosenCards[i].cardInfo.ALSA + "\nIWD: " + chosenCards[i].cardInfo.IWD + "\nGIH WR: " + chosenCards[i].cardInfo["GIH WR"];
+                cardDetailsElement.innerText = "ALSA: " + chosenCards[i].ALSA + "\nIWD: " + chosenCards[i].IWD + "\nGIH WR: " + chosenCards[i]["GIH WR"];
                 cardElement.appendChild(cardDetailsElement);
 
                 // Add event listeners
